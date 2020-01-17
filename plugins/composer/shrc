@@ -1,0 +1,31 @@
+DEPMAN_PHP_PATH="$DEPMAN_PLUGINS_PATH/composer"
+export DEPMAN_PHP_PATH
+
+function depman_detect_php()
+{
+  php -v | head -n 1 | cut -d " " -f 2 | cut -f1-2 -d"."
+  return 0
+}
+
+function dphp()
+{
+    depman_generate_dockerfile "$DEPMAN_PHP_PATH"
+
+    docker build -t depman/composer:latest - < "$DEPMAN_PHP_PATH/Dockerfile"
+    docker run --rm --interactive --tty \
+      -v "$PWD":/app \
+      -v ${COMPOSER_HOME:-$HOME/.composer}:/tmp \
+      "${DEPMAN_DOCKER_FLAGS[@]}" \
+      -w /app depman/composer:latest $@
+}
+
+if [ -z "$DEPMAN_PHP_VERSION" ];
+then
+  DEPMAN_PHP_VERSION=$(depman_detect_php)
+  export DEPMAN_PHP_VERSION
+fi
+
+function composer()
+{
+  dphp composer $@
+}

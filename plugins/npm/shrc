@@ -1,0 +1,10 @@
+function dnode()
+{
+    docker build -t depman/npm:latest - < "$DEPMAN_PLUGINS_PATH/npm/Dockerfile"
+    docker run --rm --interactive --tty -v "$PWD":/app "${DEPMAN_DOCKER_FLAGS[@]}" -w /app depman/npm $@
+}
+
+function npm()
+{
+  dnode npm $@
+}

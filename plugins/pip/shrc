@@ -1,0 +1,6 @@
+function dpython()
+{
+    PIP_CACHE=$XDG_CACHE_HOME/pip
+    docker --rm --interactive --tty run -v "$PWD":/app -v ${PIP_CACHE:-$HOME/.cache/pip}:/tmp -p 5000:5000 \
+      --user $DEPMAN_USER -w /app $@
+}

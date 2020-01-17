@@ -1,0 +1,22 @@
+DEPMAN_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+DEPMAN_USER=$(id -u):$(id -g)
+DEPMAN_DOCKER_FLAGS=(--network host --user "$DEPMAN_USER")
+DEPMAN_PLUGINS_PATH=/home/albi/Projekty/depman/plugins
+
+export DEPMAN_USER
+export DEPMAN_DOCKER_FLAGS
+export DEPMAN_PLUGINS_PATH
+
+export DOCKER_BUILDKIT=1
+
+if [ $DEPMAN_DEBUG ]; then
+  set -o xtrace
+fi
+
+# shellcheck source=config
+source "$DEPMAN_DIR/config"
+
+for PLUGIN_DIR in "$DEPMAN_PLUGINS_PATH"/*/ ; do
+    source "$PLUGIN_DIR/shrc"
+done
+
