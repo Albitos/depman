@@ -9,14 +9,23 @@ function depman_detect_php()
 
 function dphp()
 {
+    WORKSPACE_HOME=$(depman_get_workspace_dir)
+
+    depman_load_config "$WORKSPACE_HOME/workspace.json"
+
     depman_generate_dockerfile "$DEPMAN_PHP_PATH"
 
-    docker build -t depman/composer:latest - < "$DEPMAN_PHP_PATH/Dockerfile"
+    docker build -t depman/composer:latest $DEPMAN_PHP_PATH
+
+    USER_HOME=$(depman_get_container_user_home "depman/composer")
+
     docker run --rm --interactive --tty \
       -v "$PWD":/app \
+      -v "$DEPMAN_DIR/workspaces/home/$USER_HOME:$USER_HOME" \
       -v ${COMPOSER_HOME:-$HOME/.composer}:/tmp \
+      -w /app \
       "${DEPMAN_DOCKER_FLAGS[@]}" \
-      -w /app depman/composer:latest $@
+      depman/composer:latest $@
 }
 
 if [ -z "$DEPMAN_PHP_VERSION" ];

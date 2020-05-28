@@ -1,7 +1,22 @@
+DEPMAN_NPM_PATH="$DEPMAN_PLUGINS_PATH/npm"
+
 function dnode()
 {
-    docker build -t depman/npm:latest - < "$DEPMAN_PLUGINS_PATH/npm/Dockerfile"
-    docker run --rm --interactive --tty -v "$PWD":/app "${DEPMAN_DOCKER_FLAGS[@]}" -w /app depman/npm $@
+    WORKSPACE_HOME=$(depman_get_workspace_dir)
+
+    depman_load_config "$WORKSPACE_HOME/workspace.json"
+
+    depman_generate_dockerfile "$DEPMAN_NPM_PATH"
+
+    docker build -t depman/npm:latest "$DEPMAN_NPM_PATH"
+    USER_HOME=$(depman_get_container_user_home "depman/npm")
+
+    docker run --rm --interactive --tty \
+           -v "$PWD":/app \
+           -v "$WORKSPACE_HOME:$USER_HOME" \
+           -w /app \
+           "${DEPMAN_DOCKER_FLAGS[@]}" \
+           depman/npm $@
 }
 
 function npm()
