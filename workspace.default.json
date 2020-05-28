@@ -2,7 +2,7 @@
   "plugins": {
     "composer": {
       "image": "php",
-      "tag": "xxx"
+      "tag": "alpine"
     },
     "npm": {
       "image": "tiangolo/node-frontend",
