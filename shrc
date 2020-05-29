@@ -18,7 +18,6 @@ export DEPMAN_DEFAULT_CONFIG_FILE
 
 export DOCKER_BUILDKIT=1
 
-  set -o xtrace
 if [ $DEPMAN_DEBUG ]; then
   set -o xtrace
 fi
