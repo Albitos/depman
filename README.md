@@ -9,10 +9,15 @@ There are two reasons to using depman:
  1. Security of local development environment
  2. Easier management of development environment versions and tools   
 
-# Usage
+# Installation
+First make sure you have [jq](https://stedolan.github.io/jq/) installed. 
+
 Clone this repository and add `source shrc` to your bashrc or zshrc.
 
-# Commands
+# Usage
+
+Simply execute `composer`, `pip` or `npm` as usual. They will be executed from within a docker container using version defined in config.
+
 You can switch docker image and tag using following command:
 
 `depman_switch_image [plugin]`
