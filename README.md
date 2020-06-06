@@ -11,7 +11,7 @@ This isolates all scripts executed by packages to the local directory and preven
 
 
 # Installation
-First make sure you have [jq](https://stedolan.github.io/jq/) installed. 
+First make sure you have [jq](https://stedolan.github.io/jq/) and [Docker](https://www.docker.com/get-started) installed. 
 
 Clone this repository and add `source shrc` to your bashrc or zshrc.
 
