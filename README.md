@@ -1,13 +1,14 @@
-# What is it
+# Why depman?
+There are two reasons to using depman:
+ 1. Security of local development environment
+ 2. Easier management of development environment versions and tools   
+
+# How it works?
 Depman is a wrapper for popular dependency managers. Currently supported ones are composer, pip and npm. Other ones are really easy to add - pull requests are welcome.
 
 It automatically adds alias for those programs and executes them through configured docker container.
 This isolates all scripts executed by packages to the local directory and prevents malicious code from accessing the developers machine.
 
-# Why
-There are two reasons to using depman:
- 1. Security of local development environment
- 2. Easier management of development environment versions and tools   
 
 # Installation
 First make sure you have [jq](https://stedolan.github.io/jq/) installed. 
