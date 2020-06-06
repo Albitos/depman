@@ -1,6 +1,5 @@
 function depman_generate_dockerfile()
 {
-    set -x
     PLUGIN_PATH=$1
     rm "$PLUGIN_PATH/Dockerfile"
     cp "$PLUGIN_PATH/Dockerfile.template" "$PLUGIN_PATH/Dockerfile"
