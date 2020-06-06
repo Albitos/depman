@@ -17,6 +17,8 @@ Clone this repository and add `source shrc` to your bashrc or zshrc.
 
 # Usage
 
+![Depman Demo](https://wsosnowski.pl/img/posts/depman/depman-demo.gif)
+
 Simply execute `composer`, `pip` or `npm` as usual. They will be executed from within a docker container using version defined in config.
 
 You can switch docker image and tag using following command:
