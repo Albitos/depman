@@ -1,6 +1,6 @@
 # Why depman?
 There are two reasons to using depman:
- 1. Security of local development environment
+ 1. [Security of local development environment](https://wsosnowski.pl/dependency-managers-security.html)
  2. Easier management of development environment versions and tools   
 
 # How it works?
