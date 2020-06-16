@@ -1,4 +1,8 @@
-DEPMAN_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+DEPMAN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+if [ -n "$ZSH_VERSION" ]; then
+  DEPMAN_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+fi
+
 DEPMAN_UID=$(id -u)
 DEPMAN_USER="$DEPMAN_UID:$(id -g)"
 DEPMAN_DOCKER_FLAGS=(
