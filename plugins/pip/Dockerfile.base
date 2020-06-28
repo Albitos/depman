@@ -1,0 +1,4 @@
+FROM {{ baseImage }}:{{ version }}
+
+RUN python -m pip install --user virtualenv
+ 

@@ -1,16 +1,16 @@
 {
   "plugins": {
     "composer": {
-      "image": "php",
-      "tag": "alpine"
+      "image": "depman/php",
+      "tag": "7.4-cli-alpine"
     },
     "npm": {
-      "image": "tiangolo/node-frontend",
-      "tag": "latest"
+      "image": "depman/node",
+      "tag": "12-alpine"
     },
     "pip": {
-      "image": "python",
-      "tag": "latest"
+      "image": "depman/python",
+      "tag": "3.8-alpine"
     }
   }
 }

@@ -1,5 +1,5 @@
 .idea
 home
 .directory
-Dockerfile
+plugins/**/Dockerfile
 .data

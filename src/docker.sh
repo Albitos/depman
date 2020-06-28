@@ -1,3 +1,17 @@
+function depman_build_plugin_image()
+{
+  PLUGIN=$1
+  BASE_IMAGE=$2
+  VERSION=$3
+
+  WORKSPACE_DIR="$DEPMAN_DIR/images/$PLUGIN/$VERSION/"
+  mkdir -p "$WORKSPACE_DIR"
+  cp Dockerfile.base "$WORKSPACE_DIR/Dockerfile"
+  sed -i "s#{{[[:blank:]]*version[[:blank:]]*}}#${VERSION}#g" "$WORKSPACE_DIR/Dockerfile"
+  sed -i "s#{{[[:blank:]]*baseImage[[:blank:]]*}}#${BASE_IMAGE}#g" "$WORKSPACE_DIR/Dockerfile"
+  docker build -f "$WORKSPACE_DIR/Dockerfile" "$WORKSPACE_DIR" -t "depman/${BASE_IMAGE}:${VERSION}"
+}
+
 function depman_generate_dockerfile()
 {
     PLUGIN_PATH=$1
@@ -28,3 +42,4 @@ function depman_get_container_user_home()
     mkdir -p "$DEPMAN_DIR/workspaces/home/$USER_HOME"
     echo $USER_HOME
 }
+

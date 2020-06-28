@@ -15,6 +15,7 @@ DEPMAN_DOCKER_FLAGS=(
 DEPMAN_PLUGINS_PATH=/home/albi/Projekty/depman/plugins
 DEPMAN_DEFAULT_CONFIG_FILE="$DEPMAN_DIR/workspace.default.json"
 
+export DEPMAN_DIR
 export DEPMAN_USER
 export DEPMAN_DOCKER_FLAGS
 export DEPMAN_PLUGINS_PATH
