@@ -12,7 +12,7 @@ DEPMAN_DOCKER_FLAGS=(
   --volume "/etc/passwd:/etc/passwd:ro"
   --volume "/etc/shadow:/etc/shadow:ro"
 )
-DEPMAN_PLUGINS_PATH=/home/albi/Projekty/depman/plugins
+DEPMAN_PLUGINS_PATH="$DEPMAN_DIR/plugins"
 DEPMAN_DEFAULT_CONFIG_FILE="$DEPMAN_DIR/workspace.default.json"
 
 export DEPMAN_DIR
@@ -23,14 +23,14 @@ export DEPMAN_DEFAULT_CONFIG_FILE
 
 export DOCKER_BUILDKIT=1
 
-if [ $DEPMAN_DEBUG ]; then
+if [ "$DEPMAN_DEBUG" ]; then
   set -o xtrace
 fi
 
 # shellcheck source=src/functions.sh
 source "$DEPMAN_DIR/src/functions.sh"
 
-depman_load_config $DEPMAN_DEFAULT_CONFIG_FILE
+depman_load_config "$DEPMAN_DEFAULT_CONFIG_FILE"
 
 for PLUGIN_DIR in "$DEPMAN_PLUGINS_PATH"/*/ ; do
     # shellcheck disable=SC1090
